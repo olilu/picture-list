@@ -1,8 +1,8 @@
 import { useLoaderData } from "react-router-dom";
-import PictureCard from "../components/PictureCard";
 import 'bootstrap/dist/css/bootstrap.css';
+import PictureCard from "../components/PictureCard";
 
-function PictureList() {
+function SearchList() {
   const pictures =  useLoaderData();
   return (
     <>
@@ -15,14 +15,13 @@ function PictureList() {
               photographer={picture.photographer} 
               url={picture.url}
               alt={picture.alt}
-              colortype='bg-dark'
+              colortype='bg-secondary'
               />)}
           </>
         )}
         {pictures.length === 0 && (
           <div className="mt-3 text-black text-center">
-            <h2>There are no pictures yet</h2>
-            <p>Start by searching for new pictures</p>
+            <p>No pictures found</p>
           </div>
         )}
       </div>
@@ -30,13 +29,11 @@ function PictureList() {
   );
 }
 
-export default PictureList;
+export default SearchList;
 
-export async function loader({ params }) {
-  console.log(params.id);
-  const res = await fetch(`http://localhost:8080/lists/${params.id}/pictures`);
-  const resData = await res.json();
-  console.log(resData.pictures);
-  return resData.pictures;
+export async function loader() {
+  const pictureList = JSON.parse(sessionStorage.getItem("pictures"));
+  console.log(pictureList);
+  return pictureList;
 }
  

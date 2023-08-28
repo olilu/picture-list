@@ -6,7 +6,7 @@ function RootLayout() {
   return (
     <>
         <MainHeader />
-        <main className="row justify-content-md-center bg-light">
+        <main className="row justify-content-md-center">
           <div className="col col-lg-2">
           </div>
           <div className="mt-2 col-lg-8">

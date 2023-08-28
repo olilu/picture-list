@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import './index.css';
 import RootLayout from './routes/RootLayout';
 import PictureList, {loader as pictureListLoader} from './routes/PictureList';
 import PictureSearch from './routes/PictureSearch';
 import ListOverview, {loader as listLoader}  from './routes/ListOverview';
 import NewList, {action as newListAction} from './routes/NewList';
+import SearchList, {loader as searchListLoader} from './routes/SearchList';
 import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter(
@@ -14,16 +14,16 @@ const router = createBrowserRouter(
     { path: '/', element: <RootLayout />, children: [
       { path: '/', element: <ListOverview />, loader: listLoader},
       { path: 'new-list', element: <NewList />, action: newListAction},
-      { path: ':id', element: <PictureList />, loader: pictureListLoader, children: [
-        { path: ':id/search-picture', element: <PictureSearch /> },
-      ]},
+      { path: ':id', element: <PictureSearch />, children: [
+        { path: 'search', element: <SearchList />, loader: searchListLoader},
+        { path: 'pictures', element: <PictureList />, loader: pictureListLoader},
     ]},
-  ]
-);
+  ]},
+]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider router={router}/>
   </React.StrictMode>
 );
 
