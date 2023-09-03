@@ -35,10 +35,10 @@ function PictureList() {
 export default PictureList;
 
 export async function loader({ params }) {
-  console.log(params.id);
+  // console.log(params.id);
   const res = await fetch(`http://localhost:8080/lists/${params.id}/pictures`);
   const resData = await res.json();
-  console.log(resData.pictures);
+  // console.log(resData.pictures);
   return [resData.pictures, params.id];
 }
  

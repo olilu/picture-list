@@ -7,15 +7,15 @@ function SearchBar() {
     const navigate = useNavigate();
 
     const onSubmit = async (data) => {
-        console.log(data.search);
+        // console.log(data.search);
         const res = await fetch(`http://localhost:8080/search/${data.search}`);
         if (!res.ok) {
             console.log("error");
             console.log(`${res.url} returned ${res.status} ${res.statusText}`);
         }
-        console.log(res);
+        // console.log(res);
         const resData = await res.json();
-        console.log(resData.pictures);
+        // console.log(resData.pictures);
         let pictures;
         if (!resData.pictures) {
             console.log("no pictures");

@@ -53,7 +53,7 @@ export default SearchList;
 
 export async function loader( {params} ) {
   const pictureList = JSON.parse(sessionStorage.getItem("pictures"));
-  console.log(pictureList);
+  // console.log(pictureList);
   return [pictureList, params.id];
 }
  
