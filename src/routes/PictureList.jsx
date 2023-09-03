@@ -3,7 +3,7 @@ import PictureCard from "../components/PictureCard";
 import 'bootstrap/dist/css/bootstrap.css';
 
 function PictureList() {
-  const pictures =  useLoaderData();
+  const [pictures, listID] =  useLoaderData();
   return (
     <>
       <div className="row container-fluid justify-content-md-center">
@@ -16,6 +16,8 @@ function PictureList() {
               url={picture.url}
               alt={picture.alt}
               colortype='bg-dark'
+              type='list'
+              listID={listID}
               />)}
           </>
         )}
@@ -37,6 +39,6 @@ export async function loader({ params }) {
   const res = await fetch(`http://localhost:8080/lists/${params.id}/pictures`);
   const resData = await res.json();
   console.log(resData.pictures);
-  return resData.pictures;
+  return [resData.pictures, params.id];
 }
  

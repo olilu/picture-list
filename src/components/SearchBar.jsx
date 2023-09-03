@@ -11,13 +11,19 @@ function SearchBar() {
         const res = await fetch(`http://localhost:8080/search/${data.search}`);
         if (!res.ok) {
             console.log("error");
-            console.log(res);
-            return;
+            console.log(`${res.url} returned ${res.status} ${res.statusText}`);
         }
         console.log(res);
         const resData = await res.json();
         console.log(resData.pictures);
-        sessionStorage.setItem("pictures", JSON.stringify(resData.pictures));
+        let pictures;
+        if (!resData.pictures) {
+            console.log("no pictures");
+            pictures = [];
+        } else {
+            pictures = resData.pictures;
+        }
+        sessionStorage.setItem("pictures", JSON.stringify(pictures));
         navigate('search');
     };
 
