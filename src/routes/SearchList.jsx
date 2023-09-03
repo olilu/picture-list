@@ -12,8 +12,8 @@ function SearchList() {
   useEffect(() => {
     async function fetchPictures() {
       const [origPictures, id] = await pictureListLoader({params: {id: listID}});
-      console.log("original pictures")
-      console.log(origPictures);
+      // console.log("original pictures")
+      // console.log(origPictures);
       setOriginalPictures(origPictures);
     }
     fetchPictures();
